@@ -156,13 +156,22 @@ public class afjd extends Vlerat {
                 //printimi i tabeles se alfabetit e-AFJD
             }
 
-           dfa a = new dfa();
+           afd a = new afd();
             a.afjd = AFJD;
-            a.printimi();
+
 
             // dfa.tabelaDFA( gjendje_info, shkronjat, gjendje_info);   //afjd
 
             System.out.println("Konvertimi perfundoi me sukses.");
+            System.out.println();
+
+            System.out.print("Shkruani 'po' ose 'jo' per ta kovertuar ne AFD:");
+            Scanner afdBoolean = new Scanner(System.in);
+            String konvertoAfd = sc.next();
+            if (konverto.equals("po")) {
+                System.out.println();
+                a.printimiAFD();
+            }
 
 
         } else {

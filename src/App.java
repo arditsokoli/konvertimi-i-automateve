@@ -77,6 +77,7 @@ public class App  {
         // Konvertimi ne AFJD
 
         afjd.tabelaAFJD(rows, gjendje_info, shkronjat, gjendje_info);   //afjd
+
        // dfa.tabelaAFD(rows, gjendje_info, shkronjat, gjendje_info);
 
 

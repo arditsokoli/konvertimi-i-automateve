@@ -2,13 +2,20 @@ import java.util.ArrayList;
 
 
 
-public class dfa extends afjd  {
+public class afd extends afjd  {
 
 
     protected static ArrayList<ArrayList<String>> afjd;
 
-    public void printimi(){
+    public void printimiAFD(){
         System.out.println(afjd);
+
+
+
+
+
+
+
     }
 /*
     public static void tabelaAFD(ArrayList<ArrayList<String>> rows, String[][] gjendje_info, String[] shkronjat, String[][] gjendje_info1) {
