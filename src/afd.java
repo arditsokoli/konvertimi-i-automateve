@@ -9,6 +9,7 @@ public class afd extends afjd  {
 
     public void printimiAFD(){
         System.out.println(afjd);
+        System.out.println(gjendjetAFJD);
 
 
 
