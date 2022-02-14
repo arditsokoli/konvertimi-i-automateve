@@ -177,8 +177,6 @@ public class afjd extends Vlerat {
             a.gjendjetAFJD = gjendjetArray;
 
 
-            // dfa.tabelaDFA( gjendje_info, shkronjat, gjendje_info);   //afjd
-
             System.out.println("Konvertimi perfundoi me sukses.");
             System.out.println();
 
@@ -187,7 +185,7 @@ public class afjd extends Vlerat {
             String konvertoAfd = sc.next();
             if (konverto.equals("po")) {
                 System.out.println();
-                a.printimiAFD();
+                a.printimiAFD(AFJD, gjendje_info, shkronjatPae);
             }
 
 
