@@ -1,17 +1,87 @@
-import java.lang.reflect.Array;
 import java.util.*;
-
-import static java.util.Collections.emptyList;
 
 
 public class afjd extends Vlerat {
 
     ArrayList<ArrayList<String>> afjd;
-    ArrayList<String> gjendjetAFJD ;
+    ArrayList<String> gjendjetAFJD;
+
+
+    protected static void mainAFJD(ArrayList<ArrayList<String>> tranzicionet, String[][] gjendjet, String[] shkronjat, String[][] gjendje_info) {
+        int nrgjendjeve = gjendjet.length;
+        int nrshkronjave = shkronjat.length;
+        int numriMagjik = nrshkronjave - 1;
+
+
+        System.out.print("Shkruani 'po' ose 'jo' per ta kovertuar ne AFJD:");
+        Scanner sc = new Scanner(System.in);
+        String konverto = sc.next();
+        if (konverto.equals("po")) {
+            System.out.println();
+
+
+            afjd t = new afjd();
+            ArrayList<ArrayList<Integer>> eClosure = t.toTable(tranzicionet, nrgjendjeve, nrshkronjave, numriMagjik, gjendje_info);
+            ArrayList<ArrayList<String>> AFJD = new ArrayList<>();
+
+            int gjatesia = 0;
+            for (int i = 0; i < gjendjet.length; i++) {   // 0-3
+                ArrayList<String> row = new ArrayList<>();
+                for (int j = 0; j < numriMagjik; j++) {  //0-2   // futja ne tabelen perfundimtare
+                    afjd k = new afjd();
+                    String vlera = k.toStringu(tranzicionet, nrgjendjeve, nrshkronjave, numriMagjik, gjendje_info, i, j);
+
+                    if (vlera.length() > gjatesia) {
+                        gjatesia = vlera.length();
+                    }
+                    if (vlera.equals("")) {
+                        row.add("∅");
+                    } else {
+                        row.add(vlera);
+                    }
+                }
+                AFJD.add(row);
+            }
+
+            String[] shkronjatPae = new String[numriMagjik];
+            for (int f = 0; f < numriMagjik; f++) {         // fshirja e epsilonit nga shkronjat
+                shkronjatPae[f] = shkronjat[f];
+            }
+
+            System.out.println("Konvertimi ne AFJD :\n");
+            ArrayList<String> gjendjetArray = printimiGjendjeveAFJD(tranzicionet, gjendje_info, numriMagjik);  // printimi gjendjeve  eshte:
+
+            System.out.println();
+            for (int k = 0; k < eClosure.size(); k++) {
+                printimiTabeles(shkronjatPae, k, gjatesia, AFJD, gjendje_info);
+                //printimi i tabeles se alfabetit e-AFJD
+            }
+
+            afd a = new afd();
+            a.afjd = AFJD;
+            a.gjendjetAFJD = gjendjetArray;
+
+            System.out.println("Konvertimi perfundoi me sukses.");
+            System.out.println();
+
+            System.out.print("Shkruani 'po' ose 'jo' per ta kovertuar ne AFD:");
+            Scanner sc1 = new Scanner(System.in);
+            String konvertoAfd = sc1.next();
+            if (konvertoAfd.equals("po")) {    // konvertimi ne afd
+                System.out.println();
+                a.mainAFD(AFJD, gjendje_info, shkronjatPae);
+            }
+
+        } else {
+            System.out.println("\nKonvertimi nuk perfundoi.");
+        }
+    }
 
 
 
-    // kthimi nga array me String ne Array Inteager "me indexin e gjendjeve"
+
+
+    // kthimi nga array me String ne Array Inteager "me indexin e gjendjeve"       e mbyllje
     protected ArrayList<ArrayList<Integer>> toTable(ArrayList<ArrayList<String>> tranzicionet, int nrgjendjeve, int nrshkronjave, int numri, String[][] gjendje_info) {
         ArrayList<ArrayList<Integer>> Closure = new ArrayList<>();
         ArrayList<Integer> index = new ArrayList<>();
@@ -36,7 +106,6 @@ public class afjd extends Vlerat {
                         }
                     }
                 }
-
             }
             Closure.add(row);
         }
@@ -71,9 +140,7 @@ public class afjd extends Vlerat {
             a++;
         }
 
-        String result = String.join(",", index1); // fut ne string arraylisten
-
-        return result;
+        return String.join(",", index1);
     }
 
     protected static ArrayList<String> printimiGjendjeveAFJD(ArrayList<ArrayList<String>> tranzicionet, String[][] gjendjet, int nrMagjik) {
@@ -96,7 +163,7 @@ public class afjd extends Vlerat {
             //eshte fillestare dhe permban gjendjen fundore
             if (gjendjet[i][1].equals("po") && tranzicionet.get(i).get(nrMagjik).contains(fundem)) {
                 System.out.print("-->((" + gjendjet[i][0] + "))");
-                name = "-*" + gjendjet[i][0] ;
+                name = "-*" + gjendjet[i][0];
                 gjendjetArray.add(name);
             }
             //eshte fillestare dhe nuk permban gjendjen fundore
@@ -112,86 +179,13 @@ public class afjd extends Vlerat {
                 gjendjetArray.add(name);
             } else {
                 System.out.print("(" + gjendjet[i][0] + ")");
-                name =  gjendjet[i][0] ;
+                name = gjendjet[i][0];
                 gjendjetArray.add(name);
             }
             System.out.print("   ");
         }
         System.out.println();
-    return gjendjetArray;
-    }
-
-
-    protected static void tabelaAFJD(ArrayList<ArrayList<String>> tranzicionet, String[][] gjendjet, String[] shkronjat, String[][] gjendje_info) {
-        int nrgjendjeve = gjendjet.length;
-        int nrshkronjave = shkronjat.length;
-        int numriMagjik = nrshkronjave - 1;
-        String[] shkronjatPae = new String[numriMagjik];
-
-        for (int f = 0; f < numriMagjik; f++) {         // fshirja e epsilonit nga shkronjat
-            shkronjatPae[f] = shkronjat[f];
-        }
-
-        System.out.print("Shkruani 'po' ose 'jo' per ta kovertuar ne AFJD:");
-        Scanner sc = new Scanner(System.in);
-        String konverto = sc.next();
-        if (konverto.equals("po")) {
-            System.out.println();
-
-
-            afjd t = new afjd();
-            ArrayList<ArrayList<Integer>> eClosure = t.toTable(tranzicionet, nrgjendjeve, nrshkronjave, numriMagjik, gjendje_info);
-            ArrayList<ArrayList<String>> AFJD = new ArrayList<>();
-
-            int gjatesia = 0;
-            for (int i = 0; i < gjendjet.length; i++) {   // 0-3
-                ArrayList<String> row = new ArrayList<>();
-                for (int j = 0; j < numriMagjik; j++) {  //0-2   // futja ne tabelen perfundimtare
-                    afjd k = new afjd();
-                    String vlera = k.toStringu(tranzicionet, nrgjendjeve, nrshkronjave, numriMagjik, gjendje_info, i, j);
-
-                    if (vlera.length() > gjatesia) {
-                        gjatesia = vlera.length();
-                    }
-                    if (vlera.equals("")) {
-                        row.add("∅");
-                    } else {
-                        row.add(vlera);
-                    }
-                }
-                AFJD.add(row);
-            }
-
-
-            System.out.println("Konvertimi ne AFJD :\n");
-            ArrayList<String> gjendjetArray = new ArrayList<>();
-            gjendjetArray= printimiGjendjeveAFJD(tranzicionet, gjendje_info, numriMagjik);  // printimi gjendjeve  eshte:
-            System.out.println();
-            for (int k = 0; k < eClosure.size(); k++) {
-                printimiTabeles(shkronjatPae, k, gjatesia, AFJD, gjendje_info);
-                //printimi i tabeles se alfabetit e-AFJD
-            }
-
-            afd a = new afd();
-            a.afjd = AFJD;
-            a.gjendjetAFJD = gjendjetArray;
-
-
-            System.out.println("Konvertimi perfundoi me sukses.");
-            System.out.println();
-
-            System.out.print("Shkruani 'po' ose 'jo' per ta kovertuar ne AFD:");
-            Scanner afdBoolean = new Scanner(System.in);
-            String konvertoAfd = sc.next();
-            if (konverto.equals("po")) {
-                System.out.println();
-                a.printimiAFD(AFJD, gjendje_info, shkronjatPae);
-            }
-
-
-        } else {
-            System.out.println("\nKonvertimi nuk perfundoi.");
-        }
+        return gjendjetArray;
     }
 
 }
