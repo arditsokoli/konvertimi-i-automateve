@@ -1,22 +1,10 @@
-import java.util.ArrayList;
 
 
 
 public class afd extends afjd  {
-
-
-    protected static ArrayList<ArrayList<String>> afjd;
-
     public void printimiAFD(){
-        System.out.println(afjd);
-        System.out.println(gjendjetAFJD);
-
-
-
-
-
-
-
+        System.out.println(super.afjd);
+        System.out.println(super.gjendjetAFJD);
     }
 /*
     public static void tabelaAFD(ArrayList<ArrayList<String>> rows, String[][] gjendje_info, String[] shkronjat, String[][] gjendje_info1) {

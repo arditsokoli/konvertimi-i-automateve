@@ -9,9 +9,7 @@ public class afjd extends Vlerat {
     ArrayList<ArrayList<String>> afjd;
     ArrayList<String> gjendjetAFJD ;
 
-    public void setGjendjetAFJD(ArrayList<String> gjendjetAFJD) {
-        this.gjendjetAFJD = gjendjetAFJD;
-    }
+
 
     // kthimi nga array me String ne Array Inteager "me indexin e gjendjeve"
     protected ArrayList<ArrayList<Integer>> toTable(ArrayList<ArrayList<String>> tranzicionet, int nrgjendjeve, int nrshkronjave, int numri, String[][] gjendje_info) {
@@ -78,7 +76,7 @@ public class afjd extends Vlerat {
         return result;
     }
 
-    public static void printimiGjendjeveAFJD(ArrayList<ArrayList<String>> tranzicionet, String[][] gjendjet, int nrMagjik) {
+    protected static ArrayList<String> printimiGjendjeveAFJD(ArrayList<ArrayList<String>> tranzicionet, String[][] gjendjet, int nrMagjik) {
 
         System.out.print("Gjendjet:     ");
         int nrF = -1;
@@ -91,38 +89,36 @@ public class afjd extends Vlerat {
         String fundem = gjendjet[nrF][0];
 
 
-        ArrayList<String> gjendjetArray = new ArrayList<>();;
-        String name ;
+        ArrayList<String> gjendjetArray = new ArrayList<>();
+        String name;
         for (int i = 0; i < gjendjet.length; i++) {
 
             //eshte fillestare dhe permban gjendjen fundore
             if (gjendjet[i][1].equals("po") && tranzicionet.get(i).get(nrMagjik).contains(fundem)) {
                 System.out.print("-->((" + gjendjet[i][0] + "))");
-                 name = "-->((" + gjendjet[i][0] + "))";
+                name = "-*" + gjendjet[i][0] ;
                 gjendjetArray.add(name);
             }
             //eshte fillestare dhe nuk permban gjendjen fundore
             else if (gjendjet[i][1].equals("po") && !tranzicionet.get(i).get(nrMagjik).contains(fundem)) {
                 System.out.print("-->(" + gjendjet[i][0] + ")");
-                name = "-->(" + gjendjet[i][0] + ")";
+                name = "-" + gjendjet[i][0];
                 gjendjetArray.add(name);
             }
             //eshte fundore dhe  permban gjendjen fundore
             else if (gjendjet[i][1].equals("jo") && tranzicionet.get(i).get(nrMagjik).contains(fundem)) {
                 System.out.print("((" + gjendjet[i][0] + "))");
-                name = "((" + gjendjet[i][0] + "))";
+                name = "*" + gjendjet[i][0];
                 gjendjetArray.add(name);
             } else {
                 System.out.print("(" + gjendjet[i][0] + ")");
-                name = "(" + gjendjet[i][0] + ")";
+                name =  gjendjet[i][0] ;
                 gjendjetArray.add(name);
             }
             System.out.print("   ");
         }
         System.out.println();
-
-        afd a = new afd();
-        a.setGjendjetAFJD(gjendjetArray);
+    return gjendjetArray;
     }
 
 
@@ -168,7 +164,8 @@ public class afjd extends Vlerat {
 
 
             System.out.println("Konvertimi ne AFJD :\n");
-            printimiGjendjeveAFJD(tranzicionet, gjendje_info, numriMagjik);  // printimi gjendjeve  eshte:
+            ArrayList<String> gjendjetArray = new ArrayList<>();
+            gjendjetArray= printimiGjendjeveAFJD(tranzicionet, gjendje_info, numriMagjik);  // printimi gjendjeve  eshte:
             System.out.println();
             for (int k = 0; k < eClosure.size(); k++) {
                 printimiTabeles(shkronjatPae, k, gjatesia, AFJD, gjendje_info);
@@ -177,6 +174,7 @@ public class afjd extends Vlerat {
 
             afd a = new afd();
             a.afjd = AFJD;
+            a.gjendjetAFJD = gjendjetArray;
 
 
             // dfa.tabelaDFA( gjendje_info, shkronjat, gjendje_info);   //afjd
