@@ -40,8 +40,6 @@ public class afd extends afjd {
                         if (gjendjet_info_afd.get(elFudit).contains(",")) {
                             //??nese gjendja permban me shum se 2 elemente:
                         } else if (gjendjet_info_afd.get(elFudit).contains("∅")) {
-                            //nese gjendja permban ∅
-                            gjendjet_info_afd.add("∅");
                             for (int l = 0; l < shkronjatPae.length; l++) {
                                 index.add("∅");
                             }
@@ -50,8 +48,9 @@ public class afd extends afjd {
                             for (int f = 0; f < shkronjatPae.length; f++) {
                                 String shkronja = afdArraylist.get(k - 1).get(c);
                                 int gjendjax = indexi_gjendjes(afjd, gjendje_info, shkronja);
-                                index.add(afjd.get(gjendjax).get(c));   //gjendja fillestare
-
+                                for (int q = 0; q < shkronjatPae.length; q++) {
+                                    index.add(afjd.get(gjendjax).get(q));   //gjendja fillestare
+                                }
                             }
                         }
                     }
@@ -67,7 +66,12 @@ public class afd extends afjd {
 
     private int indexi_gjendjes(ArrayList<ArrayList<String>> afjd, String[][] gjendje_info, String shkronja) {
         //?? kthimin e indeksit ku ndodhet gjendja x ne afdarray
-        return 3;
+        for (int f = 0; f < gjendje_info.length; f++) {
+            if (gjendje_info[0][f].contains(shkronja)) {
+                return f;
+            }
+        }
+        return 0;
     }
 
     protected static boolean nuk_gjendet_ne_arrayList(ArrayList<String> gjendjet_info_afd, String afdArraylist) {
