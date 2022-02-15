@@ -30,7 +30,31 @@ public class afd extends afjd {
             ArrayList<String> index = new ArrayList<>();
             for (int c = 0; c < shkronjatPae.length; c++) {
                 if (k == 0) {
-                    index.add(afjd.get(gjendjaFillestare).get(c));
+                    index.add(afjd.get(gjendjaFillestare).get(c));   //gjendja fillestare
+                }
+
+                if (k > 0) {
+                    if (nuk_gjendet_ne_arrayList(gjendjet_info_afd, afdArraylist.get(k - 1).get(c))) {
+                        gjendjet_info_afd.add(afdArraylist.get(k - 1).get(c));
+                        int elFudit = gjendjet_info_afd.size() - 1;
+                        if (gjendjet_info_afd.get(elFudit).contains(",")) {
+                            //??nese gjendja permban me shum se 2 elemente:
+                        } else if (gjendjet_info_afd.get(elFudit).contains("∅")) {
+                            //nese gjendja permban ∅
+                            gjendjet_info_afd.add("∅");
+                            for (int l = 0; l < shkronjatPae.length; l++) {
+                                index.add("∅");
+                            }
+                        } else {
+                            //??nese gjendja permban vetem nje shkronje
+                            for (int f = 0; f < shkronjatPae.length; f++) {
+                                String shkronja = afdArraylist.get(k - 1).get(c);
+                                int gjendjax = indexi_gjendjes(afjd, gjendje_info, shkronja);
+                                index.add(afjd.get(gjendjax).get(c));   //gjendja fillestare
+
+                            }
+                        }
+                    }
                 }
 
 
@@ -39,6 +63,22 @@ public class afd extends afjd {
         }
 
         return afdArraylist;
+    }
+
+    private int indexi_gjendjes(ArrayList<ArrayList<String>> afjd, String[][] gjendje_info, String shkronja) {
+        //?? kthimin e indeksit ku ndodhet gjendja x ne afdarray
+        return 3;
+    }
+
+    protected static boolean nuk_gjendet_ne_arrayList(ArrayList<String> gjendjet_info_afd, String afdArraylist) {
+        int a = 0;
+        for (int h = 0; h < gjendjet_info_afd.size(); h++) {
+            if (!gjendjet_info_afd.get(h).contains(afdArraylist)) {
+                return true; //nese nuk permbajne ket elementin kthen true
+            }
+            a++;
+        }
+        return false;//nese permbajne ket elementin kthen false
     }
 
 

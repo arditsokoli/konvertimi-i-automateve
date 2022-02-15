@@ -53,8 +53,7 @@ public class afjd extends Vlerat {
 
             System.out.println();
             for (int k = 0; k < eClosure.size(); k++) {
-                printimiTabeles(shkronjatPae, k, gjatesia, AFJD, gjendje_info);
-                //printimi i tabeles se alfabetit e-AFJD
+                printimiTabeles(shkronjatPae, k, gjatesia, AFJD, gjendje_info); //printimi i tabeles se alfabetit e-AFJD
             }
 
             afd a = new afd();
@@ -139,6 +138,8 @@ public class afjd extends Vlerat {
 
         return String.join(",", index1);
     }
+
+
 
     protected static ArrayList<String> printimiGjendjeveAFJD(ArrayList<ArrayList<String>> tranzicionet, String[][] gjendjet, int nrMagjik) {
 
