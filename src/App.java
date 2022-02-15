@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class App  {
+public class App {
     public static void main(String[] args) {
 
         System.out.println("ε-Afjd -> Afjd -> Afd -> Afd(minimizim)");
@@ -79,9 +79,7 @@ public class App  {
         afjd.mainAFJD(rows, gjendje_info, shkronjat, gjendje_info);   //afjd
 
 
-
-       // dfa.tabelaAFD(rows, gjendje_info, shkronjat, gjendje_info);
-
+        // dfa.tabelaAFD(rows, gjendje_info, shkronjat, gjendje_info);
 
 
         // fundi i konvertimit

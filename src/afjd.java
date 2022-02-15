@@ -78,9 +78,6 @@ public class afjd extends Vlerat {
     }
 
 
-
-
-
     // kthimi nga array me String ne Array Inteager "me indexin e gjendjeve"       e mbyllje
     protected ArrayList<ArrayList<Integer>> toTable(ArrayList<ArrayList<String>> tranzicionet, int nrgjendjeve, int nrshkronjave, int numri, String[][] gjendje_info) {
         ArrayList<ArrayList<Integer>> Closure = new ArrayList<>();

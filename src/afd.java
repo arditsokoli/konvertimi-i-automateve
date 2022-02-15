@@ -7,18 +7,37 @@ public class afd extends afjd {
 
         //System.out.println(super.afjd);
         //System.out.println(super.gjendjetAFJD);
-        ArrayList<ArrayList<String>> afdArray = new ArrayList<>();
-        afdArray = return_ArrayList_afd(afjd,gjendje_info,shkronjatPae); //kthen tranzicionet per  AFD ne afdArray
-        afd.tabelaAFD(afjd, gjendje_info, shkronjatPae);   //AFJD
+        ArrayList<ArrayList<String>> afdArray;
+        afdArray = return_ArrayList_afd(afjd, gjendje_info, shkronjatPae); //kthen tranzicionet per  AFD ne afdArray
+        afd.tabelaAFD(afdArray, gjendje_info, shkronjatPae);   //AFJD printimi tk vlerat
     }
 
 
     protected ArrayList<ArrayList<String>> return_ArrayList_afd(ArrayList<ArrayList<String>> afjd, String[][] gjendje_info, String[] shkronjatPae) {
         ArrayList<ArrayList<String>> afdArraylist = new ArrayList<>();
-        ArrayList<Integer> index = new ArrayList<>();
-        for (int i = 0; i < gjendje_info.length; i++) {
+        ArrayList<String> gjendjet_info_afd = new ArrayList<>();
 
+        int gjendjaFillestare = 0;
+        for (int i = 0; i < gjendjetAFJD.size(); i++) {
+            if (gjendjetAFJD.get(i).contains("-")) {
+                gjendjaFillestare = i;     // gjetja e indeksit te gjendjes fillestare
+            }
         }
+        gjendjet_info_afd.add(gjendjetAFJD.get(gjendjaFillestare));
+
+        int gjatesia = 0;
+        for (int k = 0; k < gjendje_info.length; k++) {
+            ArrayList<String> index = new ArrayList<>();
+            for (int c = 0; c < shkronjatPae.length; c++) {
+                if (k == 0) {
+                    index.add(afjd.get(gjendjaFillestare).get(c));
+                }
+
+
+            }
+            afdArraylist.add(index);
+        }
+
         return afdArraylist;
     }
 
@@ -26,6 +45,7 @@ public class afd extends afjd {
     public static void tabelaAFD(ArrayList<ArrayList<String>> afdArray, String[][] gjendje_info, String[] shkronjatPae) {
         for (int k = 0; k < afdArray.size(); k++) {
             printimiTabeles(shkronjatPae, k, 5, afdArray, gjendje_info);
+
             //printimi i tabeles se alfabetit e-AFJD
         }
     }

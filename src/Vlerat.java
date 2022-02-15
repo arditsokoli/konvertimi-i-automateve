@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Vlerat  {
+public class Vlerat {
     public static void printimiTabeles(String[] shkronjat, int row, int gjatesi, ArrayList<ArrayList<String>> rows, String[][] gjendje_info) {
         int gjts = gjatesi + 4;
         int gjatesiaVijave = (shkronjat.length * gjts) + 4;
