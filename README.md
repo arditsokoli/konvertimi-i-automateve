@@ -16,7 +16,7 @@ Afishon ne Console :
 
 - Per automatin e konvertuar : gjëndjet 'fillestare dhe fundore'.
 - Tabelen me tranzicionet për automatin që konvertohet.
-
+### SHEMBULL:
 ### ε-AFJD 
 
 ![plot](./foto/e-afjd.png)
