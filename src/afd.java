@@ -8,8 +8,6 @@ public class afd extends afjd {
 
     public void mainAFD(ArrayList<ArrayList<String>> afjd, String[][] gjendje_info, String[] shkronjatPae) {
 
-        //System.out.println(super.afjd);
-        //System.out.println(super.gjendjetAFJD);
         ArrayList<ArrayList<String>> afdArray;
         afdArray = return_ArrayList_afd(afjd, gjendje_info, shkronjatPae); //kthen tranzicionet per  AFD ne afdArray
         System.out.println(afdArray);
@@ -46,6 +44,10 @@ public class afd extends afjd {
                     index.add(afjd.get(gjendjaFillestare).get(c));   //gjendja fillestare
                 }
                 // nese gjendet ne arraylist kthen false ne te kundert kthen true
+
+
+
+
                 if ((k > 0) && (gjendet_ne_arrayList(gjendjet_info_afd, afdArraylist.get(k - 1).get(c)))) {
                     gjendjet_info_afd.add(afdArraylist.get(k - 1).get(c));
                     if (gjendjet_info_afd.get(gjendjet_info_afd.size() - 1).contains(",")) {
@@ -115,7 +117,7 @@ public class afd extends afjd {
     }
 
     protected static boolean gjendet_ne_arrayList(ArrayList<String> gjendjet_info_afd, String afdArraylist) {
-        int a = 0;
+
         for (int h = 0; h < gjendjet_info_afd.size(); h++) {
             if (gjendjet_info_afd.get(h).equals(afdArraylist)) {
                 return false; //nese nuk permbajne ket elementin kthen true
