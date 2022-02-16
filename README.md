@@ -28,6 +28,7 @@ Afishon ne Console :
 ### AFD
 
 ![plot](./foto/afd.png)
+![plot](./foto/afd-git.png)
 
 #### Gjuha e përdorur për ndërtimin e programit:
 Java SE17  
