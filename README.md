@@ -2,7 +2,7 @@
 
 ### Përshkrimi:
 Programi shërben për koverimin e Automatëve.
-### 📕 ε-Afjd -> Afjd -> Afd -> Afd(minimizim)
+### 📕 ε-AFJD -> AFJD -> AFD -> AFD(minimizim)
 
 Merr si input në console nga përdoruesi :
 - Numrin e gjëndjeve,
@@ -17,12 +17,16 @@ Afishon ne Console :
 - Per automatin e konvertuar : gjëndjet 'fillestare dhe fundore'.
 - Tabelen me tranzicionet për automatin që konvertohet.
 
+Konvertimi në ε-AFJD -> AFJD
+![plot](./foto/e-afjd.png)
+![plot](./foto/e-afjd.png)
+Konvertimi në AFJD -> AFJD
+![plot](./foto/afd.png)
 
 #### Gjuha e përdorur për ndërtimin e programit:
 Java SE17  
 
 Për te bëre:
-1. Afjd -> Afd
-2. Afd -> Afd(minimizim)
+1. Afd -> Afd(minimizim)
 
 Contact me:  [ardit.sokoli@ap.edu.al](mailto:ardit.sokoli@ap.edu.al?subject=[GitHub]%20Source%20Han%20Sans)
