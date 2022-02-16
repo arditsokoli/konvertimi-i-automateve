@@ -87,6 +87,18 @@ public class afd extends afjd {
             }
         }
 
+        // nese nuk gjendet gjendja e errorit , shtimi i saj
+        boolean b = gjendet_ne_arrayList2D(afdArraylist, "∅"); // kthen true nese ndogjet ne adfarray
+        boolean c = gjendet_ne_arrayList(gjendjet_info_afd, "∅"); //kthen true nese ndodhet ne gjendjet_info_afd
+
+        if (b && c) {
+            gjendjet_info_afd.add("∅");
+            ArrayList<String> d= new ArrayList<>();
+            for (int h = 0; h < shkronjatPae.length; h++) {
+                d.add("∅");
+            }
+            afdArraylist.add(d);
+        }
 
         this.gjendjet_info_afd1 = gjendjet_info_afd;
         return afdArraylist;
@@ -143,10 +155,22 @@ public class afd extends afjd {
         return true;//nese permbajne ket elementin kthen false
     }
 
+    protected static boolean gjendet_ne_arrayList2D(ArrayList<ArrayList<String>> gjendjet_info_afd2d, String error) {
+        for (int g = 0; g < gjendjet_info_afd2d.size(); g++) {
+            for (int h = 0; h < gjendjet_info_afd2d.get(g).size(); h++) {
+                if (gjendjet_info_afd2d.get(g).get(h).equals(error)) {
+                    return true; //nese nuk permbajne ket elementin kthen true
+                }
+            }
+
+        }
+        return false;//nese permbajne ket elementin kthen false
+    }
+
 
     public static void tabelaAFD(ArrayList<ArrayList<String>> afdArray, String[][] gjendje_info, String[] shkronjatPae) {
         for (int k = 0; k < afdArray.size(); k++) {
-            printimiTabeles(shkronjatPae, k, 5, afdArray, gjendje_info);
+            printimiTabeles(shkronjatPae, k, 8, afdArray, gjendje_info);
 
             //printimi i tabeles se alfabetit e-AFJD
         }
