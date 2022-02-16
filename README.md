@@ -1,7 +1,7 @@
 # Projekt - Teori gjuhesh
 
 ### Përshkrimi:
-Programi shërben për koverimin e Automatëve.
+Programi shërben për konvertimin e Automatëve.
 ### 📕 ε-AFJD -> AFJD -> AFD -> AFD(minimizim)
 
 Merr si input në console nga përdoruesi :
