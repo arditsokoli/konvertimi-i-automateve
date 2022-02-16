@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class afd extends afjd {
+    ArrayList<String> gjendjet_info_afd1;
+    String[][] gjendjet_info_afd2;
 
 
     public void mainAFD(ArrayList<ArrayList<String>> afjd, String[][] gjendje_info, String[] shkronjatPae) {
@@ -9,7 +12,16 @@ public class afd extends afjd {
         //System.out.println(super.gjendjetAFJD);
         ArrayList<ArrayList<String>> afdArray;
         afdArray = return_ArrayList_afd(afjd, gjendje_info, shkronjatPae); //kthen tranzicionet per  AFD ne afdArray
-        afd.tabelaAFD(afdArray, gjendje_info, shkronjatPae);   //AFJD printimi tk vlerat
+        System.out.println(afdArray);
+
+        String[][] gjendjet_info_afd3 = new String[this.gjendjet_info_afd1.size()][1];
+        for (int i = 0; i < this.gjendjet_info_afd1.size(); i++) {
+            gjendjet_info_afd3[i][0] = this.gjendjet_info_afd1.get(i);       // kthimi nga ArrayList String to Array 2d
+        }
+        this.gjendjet_info_afd2 = gjendjet_info_afd3;
+
+
+        afd.tabelaAFD(afdArray, gjendjet_info_afd2, shkronjatPae);   //AFJD printimi tek vlerat
     }
 
 
@@ -23,48 +35,76 @@ public class afd extends afjd {
                 gjendjaFillestare = i;     // gjetja e indeksit te gjendjes fillestare
             }
         }
-        gjendjet_info_afd.add(gjendjetAFJD.get(gjendjaFillestare));
+        gjendjet_info_afd.add(gjendje_info[gjendjaFillestare][0]);
 
-        int gjatesia = 0;
-        for (int k = 0; k < gjendje_info.length; k++) {
+
+        for (int k = 0; k < gjendje_info.length ; k++) {
             ArrayList<String> index = new ArrayList<>();
+
             for (int c = 0; c < shkronjatPae.length; c++) {
                 if (k == 0) {
                     index.add(afjd.get(gjendjaFillestare).get(c));   //gjendja fillestare
                 }
+                // nese gjendet ne arraylist kthen false ne te kundert kthen true
+                if ((k > 0) && (gjendet_ne_arrayList(gjendjet_info_afd, afdArraylist.get(k - 1).get(c)))) {
+                    gjendjet_info_afd.add(afdArraylist.get(k - 1).get(c));
+                    if (gjendjet_info_afd.get(gjendjet_info_afd.size() - 1).contains(",")) {
+                        //??nese gjendja permban me shum se 2 elemente:
+                        index.add(tranz_gjendjes(afjd, gjendje_info, gjendjet_info_afd.get(gjendjet_info_afd.size() - 1), c));
 
-                if (k > 0) {
-                    if (nuk_gjendet_ne_arrayList(gjendjet_info_afd, afdArraylist.get(k - 1).get(c))) {
-                        gjendjet_info_afd.add(afdArraylist.get(k - 1).get(c));
-                        int elFudit = gjendjet_info_afd.size() - 1;
-                        if (gjendjet_info_afd.get(elFudit).contains(",")) {
-                            //??nese gjendja permban me shum se 2 elemente:
-                        } else if (gjendjet_info_afd.get(elFudit).contains("∅")) {
-                            for (int l = 0; l < shkronjatPae.length; l++) {
-                                index.add("∅");
-                            }
-                        } else {
-                            //??nese gjendja permban vetem nje shkronje
-                            for (int f = 0; f < shkronjatPae.length; f++) {
-                                String shkronja = afdArraylist.get(k - 1).get(c);
-                                int gjendjax = indexi_gjendjes(afjd, gjendje_info, shkronja);
-                                for (int q = 0; q < shkronjatPae.length; q++) {
-                                    index.add(afjd.get(gjendjax).get(q));   //gjendja fillestare
-                                }
-                            }
-                        }
+                    } else if (gjendjet_info_afd.get(gjendjet_info_afd.size() - 1).equals("∅")) {
+                        index.add("∅");
+                    } else {
+                        //??nese gjendja permban vetem nje shkronje
+                        String shkronja = gjendjet_info_afd.get(gjendjet_info_afd.size() - 1);
+                        int gjendjax = indexi_gjendjes(gjendje_info, shkronja);
+                        index.add(afjd.get(gjendjax).get(c));   //gjendja fillestare
+
                     }
                 }
 
 
             }
-            afdArraylist.add(index);
+            if (!index.isEmpty()) {
+                afdArraylist.add(index);
+            }
         }
-
+        this.gjendjet_info_afd1 = gjendjet_info_afd;
         return afdArraylist;
     }
 
-    private int indexi_gjendjes(ArrayList<ArrayList<String>> afjd, String[][] gjendje_info, String shkronja) {
+    // index.add(tranz_gjendjes(afjd, gjendje_info, gjendjet_info_afd.get(elFudit), c));
+    private String tranz_gjendjes(ArrayList<ArrayList<String>> afjd, String[][] gjendje_info, String elFundit, int d) {
+        //??nese gjendja permban me shum se 2 elemente:
+        ArrayList<String> vleraSplit = new ArrayList<>();
+        ArrayList<String> index1 = new ArrayList<>();   // mban shkronjat perfundimtare "te perseritura"
+        ArrayList<String> vlera2 = new ArrayList<>();  // mban shkronjat perfundimtare "te pa perseritura"
+
+        String[] split = elFundit.split(",");
+        Collections.addAll(vleraSplit, split);
+
+
+        for (int i = 0; i < vleraSplit.size(); i++) {
+            int indexiX = indexi_gjendjes(gjendje_info, vleraSplit.get(i));
+            if (afjd.get(indexiX).get(d).contains(",")) {//kur ka me shum se 2 shkronje ne tranzicionin
+                Collections.addAll(index1, afjd.get(indexiX).get(d).split(","));
+            } else {//kur ka  ∅  ose vetm nje shkronje
+                index1.add(afjd.get(indexiX).get(d));
+            }
+        }
+
+        int a = 0;
+        for (int h = 0; h < index1.size(); h++) {
+            if (!vlera2.contains(index1.get(h))) {   //ben bashkimin , heq perseritjen
+                vlera2.add(index1.get(a));
+            }
+            a++;
+        }
+        return String.join(",", vlera2);
+
+    }
+
+    private int indexi_gjendjes(String[][] gjendje_info, String shkronja) {
         //?? kthimin e indeksit ku ndodhet gjendja x ne afdarray
         for (int f = 0; f < gjendje_info.length; f++) {
             if (gjendje_info[0][f].contains(shkronja)) {
@@ -74,15 +114,14 @@ public class afd extends afjd {
         return 0;
     }
 
-    protected static boolean nuk_gjendet_ne_arrayList(ArrayList<String> gjendjet_info_afd, String afdArraylist) {
+    protected static boolean gjendet_ne_arrayList(ArrayList<String> gjendjet_info_afd, String afdArraylist) {
         int a = 0;
         for (int h = 0; h < gjendjet_info_afd.size(); h++) {
-            if (!gjendjet_info_afd.get(h).contains(afdArraylist)) {
-                return true; //nese nuk permbajne ket elementin kthen true
+            if (gjendjet_info_afd.get(h).equals(afdArraylist)) {
+                return false; //nese nuk permbajne ket elementin kthen true
             }
-            a++;
         }
-        return false;//nese permbajne ket elementin kthen false
+        return true;//nese permbajne ket elementin kthen false
     }
 
 

@@ -110,8 +110,8 @@ public class afjd extends Vlerat {
 
     protected String toStringu(ArrayList<ArrayList<String>> tranzicionet, int nrgjendjeve, int nrshkronjave, int numriMagjik, String[][] gjendje_info, int nrgj, int nrshkr) {
         ArrayList<String> vlerax = new ArrayList<>();
-        ArrayList<String> vlera2 = new ArrayList<>();
-        ArrayList<String> index1 = new ArrayList<>();
+        ArrayList<String> vlera2 = new ArrayList<>(); // mban shkronjat perfundimtare "te perseritura"
+        ArrayList<String> index1 = new ArrayList<>(); // mban shkronjat perfundimtare "te pa perseritura"
         ArrayList<ArrayList<Integer>> eClosure = toTable(tranzicionet, nrgjendjeve, nrshkronjave, numriMagjik, gjendje_info);
 
 
