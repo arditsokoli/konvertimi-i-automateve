@@ -22,7 +22,7 @@ Afishon ne Console :
 ![plot](./foto/e-afjd.png)
 ### ε-AFJD
 
-![plot](./foto/e-afjd.png)
+![plot](./foto/afjd.png)
 ### Konvertimi në AFJD -> AFJD
 
 ![plot](./foto/afd.png)
