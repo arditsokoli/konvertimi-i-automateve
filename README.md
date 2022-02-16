@@ -22,6 +22,7 @@ Afishon ne Console :
 Java SE17  
 
 Për te bëre:
-1. Afd -> Afd(minimizim)
+1. Afjd -> Afd
+2. Afd -> Afd(minimizim)
 
 Contact me:  [ardit.sokoli@ap.edu.al](mailto:ardit.sokoli@ap.edu.al?subject=[GitHub]%20Source%20Han%20Sans)
