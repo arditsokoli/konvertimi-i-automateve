@@ -17,11 +17,13 @@ Afishon ne Console :
 - Per automatin e konvertuar : gjëndjet 'fillestare dhe fundore'.
 - Tabelen me tranzicionet për automatin që konvertohet.
 
-###Konvertimi në ε-AFJD -> AFJD
+### ε-AFJD 
 
 ![plot](./foto/e-afjd.png)
+### ε-AFJD
+
 ![plot](./foto/e-afjd.png)
-###Konvertimi në AFJD -> AFJD
+### Konvertimi në AFJD -> AFJD
 
 ![plot](./foto/afd.png)
 
