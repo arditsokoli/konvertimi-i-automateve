@@ -38,4 +38,4 @@ Për te bëre:
 2. Konvertimi direk i automateve.
 3. Vizualizimi
 
-Contact me:  [ardit.sokoli@ap.edu.al](mailto:ardit.sokoli@ap.edu.al?subject=[GitHub]%20Source%20Han%20Sans)
+Contact me:  [ardit.sokoli@fshnstudent.info](mailto:ardit.sokoli@ap.edu.al?subject=[GitHub]%20Source%20Han%20Sans)
