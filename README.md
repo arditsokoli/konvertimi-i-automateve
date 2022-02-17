@@ -21,7 +21,7 @@ Afishon ne Console :
 
 ![plot](./foto/e-afjd.png)
 ![plot](./foto/e-afjd-git.png)
-### ε-AFJD
+### AFJD
 
 ![plot](./foto/afjd.png)
 ![plot](./foto/afjd-git.png)
