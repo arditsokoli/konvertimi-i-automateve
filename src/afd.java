@@ -38,8 +38,10 @@ public class afd extends afjd {
 
         gjendjet_info_afd.add(gjendje_info[gjendjaFillestare][0]);
 
+        int kombinimet_e_mundshme= (int) (Math.pow(2, gjendje_info.length) + gjendje_info.length);
+        int a = 0;
 
-        for (int k = 0; k < gjendje_info.length; k++) {
+        for (int k = 0; k < kombinimet_e_mundshme; k++) {
             ArrayList<String> index = new ArrayList<>();
             int sa_gjendje_shtohen = 0;
             String gjendjaEfundit;
@@ -51,9 +53,19 @@ public class afd extends afjd {
 
             if (k > 0) {  //gjendjet me index me te madh se 0  1...
                 for (int g = 0; g < shkronjatPae.length; g++) {
-                    if (gjendet_ne_arrayList(gjendjet_info_afd, afdArraylist.get(k - 1).get(g))) {
-                        gjendjet_info_afd.add(afdArraylist.get(k - 1).get(g));
+
+                    String stringu = afdArraylist.get(a).get(g);
+
+
+
+                    if (gjendet_ne_arrayList(gjendjet_info_afd, stringu)) {
+                        if (g == 1) {
+                            a++;
+                        }
+
+                        gjendjet_info_afd.add(stringu);
                         sa_gjendje_shtohen++;
+
                     }
                 }
             }
@@ -61,6 +73,7 @@ public class afd extends afjd {
 
             for (int j = sa_gjendje_shtohen; j > 0; j--) {
                 gjendjaEfundit = gjendjet_info_afd.get(gjendjet_info_afd.size() - j);
+
                 ArrayList<String> index1 = new ArrayList<>();
 
                 if (gjendjaEfundit.contains(",")) {
@@ -90,7 +103,6 @@ public class afd extends afjd {
         // nese nuk gjendet gjendja e errorit , shtimi i saj
         boolean b = gjendet_ne_arrayList2D(afdArraylist, "∅"); // kthen true nese ndogjet ne adfarray
         boolean c = gjendet_ne_arrayList(gjendjet_info_afd, "∅"); //kthen true nese ndodhet ne gjendjet_info_afd
-
         if (b && c) {
             gjendjet_info_afd.add("∅");
             ArrayList<String> d= new ArrayList<>();
@@ -119,18 +131,23 @@ public class afd extends afjd {
             int indexiX = indexi_gjendjes(gjendje_info, vleraSplit.get(i));
             if (afjd.get(indexiX).get(d).contains(",")) {//kur ka me shum se 2 shkronje ne tranzicionin
                 Collections.addAll(index1, afjd.get(indexiX).get(d).split(","));
-            } else {//kur ka  ∅  ose vetm nje shkronje
+            }
+
+            else {//kur ka  ∅  ose vetm nje shkronje
                 index1.add(afjd.get(indexiX).get(d));
             }
         }
 
         int a = 0;
         for (int h = 0; h < index1.size(); h++) {
-            if (!vlera2.contains(index1.get(h))) {   //ben bashkimin , heq perseritjen
+            if (!vlera2.contains(index1.get(h))){   //ben bashkimin , heq perseritjen
                 vlera2.add(index1.get(a));
             }
             a++;
         }
+
+
+
         return String.join(",", vlera2);
 
     }
